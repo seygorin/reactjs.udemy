@@ -1,7 +1,9 @@
 import React from 'react';
 
 import Main from '../pages/main'
-import News from '../pages/news'
+import One from '../pages/one'
+import Two from '../pages/two'
+import Three from '../pages/three'
 import Login from '../pages/login'
 import Profile from '../pages/profile'
 
@@ -10,7 +12,7 @@ import { Route, Switch } from "react-router-dom"
 import PagesLinks from './PagesLinks'
 
 
-export default function Header(props) {
+export default function Header() {
   
   return (
     <>
@@ -19,8 +21,14 @@ export default function Header(props) {
             <Route exact path="/">
               <Main />
             </Route>
-            <Route path="/news">
-                <News />
+            <Route path="/one">
+                <One />
+            </Route> 
+            <Route path="/two">
+                <Two />
+            </Route> 
+            <Route path="/three">
+                <Three />
             </Route> 
             <Route path="/login">
                 <Login />
