@@ -5,18 +5,17 @@ import One from '../pages/one'
 import Two from '../pages/two'
 import Three from '../pages/three'
 import Login from '../pages/login'
-import Profile from '../pages/profile'
 
 import { Route, Switch } from "react-router-dom"
 
 import PagesLinks from './PagesLinks'
 
 
-export default function Header() {
+export default function Header(props) {
   
   return (
     <>
-        <PagesLinks />
+        <PagesLinks isLoggedIn={props.isAuthenticated} onLogout={props.onLogout} />
         <Switch>
             <Route exact path="/">
               <Main />
@@ -32,9 +31,6 @@ export default function Header() {
             </Route> 
             <Route path="/login">
                 <Login />
-            </Route> 
-            <Route path="/profile">
-                <Profile />
             </Route> 
             <Route path="*">
                 Yo wrong

@@ -3,9 +3,8 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Toolbar from '@material-ui/core/Toolbar';
 import Button from '@material-ui/core/Button';
-import IconButton from '@material-ui/core/IconButton';
-import AccountCircle from '@material-ui/icons/AccountCircle';
 import Typography from '@material-ui/core/Typography';
+import style from './PagesLinks.module.css';
 
 import { NavLink } from 'react-router-dom';
 
@@ -37,47 +36,34 @@ const links = [
 		path: '/login',
 	},
 	{
-		id: 3,
-		path: '/profile',
-		text: 'Profile',
-	},
-    {
 		id: 4,
 		path: '/one',
 		text: 'One',
 	},
-    {
+	{
 		id: 5,
 		path: '/two',
 		text: 'Two',
 	},
-    {
+	{
 		id: 6,
 		path: '/three',
 		text: 'Three',
 	},
 ];
 
-export default function PagesLinks() {
+export default function PagesLinks(props) {
 	const classes = useStyles();
 	return (
 		<>
 			<Toolbar className={classes.toolbar}>
 				<Button size='small' key={(links.id = 4)}>
-					<NavLink
-						className='links'
-						to={(links.path = '/one')}
-						exact
-					>
+					<NavLink className='links' to={(links.path = '/one')} exact>
 						{(links.text = 'One')}
 					</NavLink>
 				</Button>
 				<Button size='small' key={(links.id = 5)}>
-					<NavLink
-						className='links'
-						to={(links.path = '/two')}
-						exact
-					>
+					<NavLink className='links' to={(links.path = '/two')} exact>
 						{(links.text = 'Two')}
 					</NavLink>
 				</Button>
@@ -103,15 +89,25 @@ export default function PagesLinks() {
 						{(links.text = 'Sitename')}
 					</NavLink>
 				</Typography>
-				<IconButton size='small' key={(links.id = 4)}>
-					<NavLink
-						className='links'
-						to={(links.path = '/profile')}
-						exact
-					>
-						<AccountCircle />
-					</NavLink>
-				</IconButton>
+				<nav className={style.nav}>
+					<ul>
+						{props.isLoggedIn && (
+							<li>
+								<a href='/'>Users</a>
+							</li>
+						)}
+						{props.isLoggedIn && (
+							<li>
+								<a href='/'>Admin</a>
+							</li>
+						)}
+						{props.isLoggedIn && (
+							<li>
+								<button onClick={props.onLogout}>Logout</button>
+							</li>
+						)}
+					</ul>
+				</nav>
 				<Button variant='outlined' size='small' key={(links.id = 2)}>
 					<NavLink
 						className='links'
